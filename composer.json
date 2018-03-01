@@ -45,7 +45,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "agv-1.0.0"
+            "dev-master": "1.0.0-dev"
         }
     },
     "minimum-stability": "dev"
