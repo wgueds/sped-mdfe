@@ -1580,7 +1580,7 @@ class Make extends BaseMake
             $disp,
             "CNPJPg",
             $cnpjPg,
-            false,
+            true,
             "CNPJ do responsável pelo pagamento do Vale-Pedágio"
         );
         $this->dom->addChild(
