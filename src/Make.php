@@ -107,6 +107,10 @@ class Make extends BaseMake
     /**
      * @var DOMElement
      */
+    private $infCIOT;
+    /**
+     * @var DOMElement
+     */
     private $seg;
     /**
      * @var DOMElement
@@ -1268,6 +1272,52 @@ class Make extends BaseMake
         }
         return $this->infContratante[$posicao];
     }
+
+    /**
+     * infCIOT
+     * tag MDFe/infMDFe/infModal/rodo/infANTT/infCIOT
+     *
+     * @param string $CIOT
+     * @param string $CPF
+     * @param string $CNPJ
+     * @return DOMElement
+     */
+    public function tagInfCIOT(
+        $CIOT = '',
+        $CPF = '',
+        $CNPJ = ''
+    ) {
+        $this->infCIOT[] = $this->dom->createElement("infCIOT");
+        $posicao = (integer)count($this->infCIOT) - 1;
+        if ($CPF != '') {
+            $this->dom->addChild(
+                $this->infCIOT[$posicao],
+                "CIOT",
+                $CIOT,
+                true,
+                "Código Identificador da Operação de Transporte"
+            );
+        }
+        if ($CPF != '') {
+            $this->dom->addChild(
+                $this->infCIOT[$posicao],
+                "CPF",
+                $CPF,
+                false,
+                "Número do CPF responsável pela geração do CIOT"
+            );
+        }
+        if ($CNPJ != '') {
+            $this->dom->addChild(
+                $this->infCIOT[$posicao],
+                "CNPJ",
+                $CNPJ,
+                false,
+                " Número do CNPJ responsável pela geração do CIOT"
+            );
+        }
+        return $this->infCIOT[$posicao];
+    }
     
     /**
      * tagSeg
@@ -1478,14 +1528,14 @@ class Make extends BaseMake
             $prop,
             "CPF",
             $CPF,
-            true,
+            false,
             "CPF do proprietário"
         );
         $this->dom->addChild(
             $prop,
             "CNPJ",
             $CNPJ,
-            true,
+            false,
             "CNPJ do proprietário"
         );
         $this->dom->addChild(
@@ -1799,6 +1849,7 @@ class Make extends BaseMake
             }
             if (! empty($this->infANTT)) {
                 $this->dom->addArrayChild($this->infANTT, $this->infContratante);
+                $this->dom->addArrayChild($this->infANTT, $this->infCIOT);
                 $this->dom->appChild($this->rodo, $this->infANTT, '');
             }
             $this->dom->appChild($this->rodo, $this->veicTracao, 'Falta tag "rodo"');
