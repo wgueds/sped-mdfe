@@ -48,7 +48,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "agv-mdfe"
+            "dev-master": "0.1.x-dev"
         }
     },
     "minimum-stability": "dev"
