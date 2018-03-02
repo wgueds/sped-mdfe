@@ -1848,19 +1848,29 @@ class Make extends BaseMake
                 $this->rodo = $this->dom->createElement("rodo");
             }
             if (! empty($this->infANTT)) {
+                // infCIOT
+                if (count($this->infCIOT) > 0) {
+                    $this->dom->addArrayChild($this->infANTT, $this->infCIOT);
+                }
+
+                // valePed
+                if (! empty($this->aDisp)) {
+                    $valePed = $this->dom->createElement("valePed");
+                    foreach ($this->aDisp as $node) {
+                        $this->dom->appChild($valePed, $node, '');
+                    }
+                    $this->dom->appChild($this->infANTT, $valePed, '');
+                }
+
+                // infContratante
                 $this->dom->addArrayChild($this->infANTT, $this->infContratante);
-                $this->dom->addArrayChild($this->infANTT, $this->infCIOT);
+
+                // infANTT
                 $this->dom->appChild($this->rodo, $this->infANTT, '');
             }
             $this->dom->appChild($this->rodo, $this->veicTracao, 'Falta tag "rodo"');
             $this->dom->addArrayChild($this->rodo, $this->aReboque);
-            if (! empty($this->aDisp)) {
-                $valePed = $this->dom->createElement("valePed");
-                foreach ($this->aDisp as $node) {
-                    $this->dom->appChild($valePed, $node, '');
-                }
-                $this->dom->appChild($this->rodo, $valePed, '');
-            }
+
             $this->dom->appChild($this->infModal, $this->rodo, 'Falta tag "infModal"');
         }
     }
