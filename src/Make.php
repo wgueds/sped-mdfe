@@ -176,12 +176,12 @@ class Make extends BaseMake
         $this->dom->appChild($this->infMDFe, $this->tot, 'Falta tag "infMDFe"');
         //tag lacres [76]
         $this->zTagLacres();
-        //tag infAdic [78]
-        $this->dom->appChild($this->infMDFe, $this->infAdic, 'Falta tag "infMDFe"');
         // tag autXML [137]
         foreach ($this->aAutXML as $aut) {
             $this->dom->appChild($this->infMDFe, $aut, 'Falta tag "infMDFe"');
         }
+        //tag infAdic [78]
+        $this->dom->appChild($this->infMDFe, $this->infAdic, 'Falta tag "infMDFe"');
         //[1] tag infMDFe (1 A01)
         $this->dom->appChild($this->MDFe, $this->infMDFe, 'Falta tag "MDFe"');
         //[0] tag MDFe
@@ -818,7 +818,7 @@ class Make extends BaseMake
      * @param string $infCpl
      * @return DOMElement
      */
-    public function taginfAdic(
+    public function tagInfAdic(
         $infAdFisco = '',
         $infCpl = ''
     ) {
@@ -851,7 +851,7 @@ class Make extends BaseMake
      * @param string $cpf
      * @return DOMElement
      */
-    public function tagautXML($cnpj = '', $cpf = '')
+    public function tagAutXML($cnpj = '', $cpf = '')
     {
         $autXML = $this->dom->createElement("autXML");
         $this->dom->addChild(
