@@ -1849,7 +1849,7 @@ class Make extends BaseMake
             }
             if (! empty($this->infANTT)) {
                 // infCIOT
-                if (count($this->infCIOT) > 0) {
+                if (! empty($this->infCIOT)) {
                     $this->dom->addArrayChild($this->infANTT, $this->infCIOT);
                 }
 
