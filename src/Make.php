@@ -1289,7 +1289,7 @@ class Make extends BaseMake
     ) {
         $this->infCIOT[] = $this->dom->createElement("infCIOT");
         $posicao = (integer)count($this->infCIOT) - 1;
-        if ($CPF != '') {
+        if ($CIOT != '') {
             $this->dom->addChild(
                 $this->infCIOT[$posicao],
                 "CIOT",
